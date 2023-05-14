@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "pTFVnh8eRGyNkOI6jHorkFatin7Quqa+m5cFIecvfXOwy6PEVony9+2ux88bAga7/lrwSIXbX32qzk5DZKmBsQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\35385\\source\\repos\\AP-Project_RonnieConlon\\AP-Project_RonnieConlon\\AP-Project_RonnieConlon.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\35385\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\35385\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
