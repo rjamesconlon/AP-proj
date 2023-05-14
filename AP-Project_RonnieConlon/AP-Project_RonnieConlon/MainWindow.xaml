@@ -5,33 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AP_Project_RonnieConlon"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="800" Width="1400">
+    <Grid RenderTransformOrigin="0.5,0.5">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="0.028"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
         <Grid.DataContext>
             <local:ImageViewModel />
         </Grid.DataContext>
-        <Image x:Name="ImgContainer" Source="{Binding Img}"  HorizontalAlignment="Left" Height="249" Margin="44,30,0,0" VerticalAlignment="Top" Width="530"/>
-        <Button Content="Black &amp; White Filter" HorizontalAlignment="Left" Margin="606,113,0,0" VerticalAlignment="Top" Command="{Binding BlackWhiteFilterCommand}"/>
-        <Button Content="Flip Horizontally" HorizontalAlignment="Left" Margin="606,146,0,0" VerticalAlignment="Top" Command="{Binding FlipFilterCommand}"/>
-        <Button Content="Filter 3" HorizontalAlignment="Left" Margin="606,181,0,0" VerticalAlignment="Top" Command="{Binding BlackWhiteFilterCommand}"/>
-        <Button Content="Open Image" HorizontalAlignment="Left" Margin="44,322,0,0" VerticalAlignment="Top" Command="{Binding LoadImageCommand}"/>
-        <TextBox HorizontalAlignment="Left" Margin="231,354,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="{Binding URLImage, UpdateSourceTrigger=PropertyChanged}"/>
-        <Label Content="Image URL" HorizontalAlignment="Left" Margin="231,323,0,0" VerticalAlignment="Top"/>
-        <Button Content="Get Image" HorizontalAlignment="Left" Margin="364,353,0,0" VerticalAlignment="Top" Command="{Binding GetOnlineImageCommand}"/>
-        <Button Content="Save to File" HorizontalAlignment="Left" Margin="129,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.402,0.606" Command="{Binding SaveImageCommand}"/>
-        <Button Content="Save To IS" HorizontalAlignment="Left" Margin="129,373,0,0" VerticalAlignment="Top" Command="{Binding SaveImageISCommand}"/>
-        <Button Content="Load From IS" HorizontalAlignment="Left" Margin="44,373,0,0" VerticalAlignment="Top" Command="{Binding LoadImageISCommand}"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="551,217,33,22" ItemsSource="{Binding CurrentThreads}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Key}" />
-                        <TextBlock Text=" : " />
-                        <TextBlock Text="{Binding Value}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        
+        
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="ImgContainer" Source="{Binding Img}" Stretch="Uniform" Margin="10"/>
+            <ProgressBar Grid.Row="1" Height="22" Margin="10" Value="{Binding FilterProgressBar}"/>
+        </Grid>
 
+        <StackPanel Grid.Column="1" Margin="10">
+            <Button Content="Black &amp; White Filter" Margin="0,10" Command="{Binding BlackWhiteFilterCommand}"/>
+            <Button Content="Flip Horizontally" Margin="0,10" Command="{Binding FlipFilterCommand}"/>
+            <Button Content="Negative Filter" Margin="0,10" Command="{Binding ApplyNegativeFilterCommand}"/>
+            <Button Content="Cancel Negative Filter" Margin="0,10" Command="{Binding CancelNegativeFilterCommand}"/>
+            <Label Content="Image URL" Margin="0,10"/>
+            <TextBox TextWrapping="Wrap" Width="317" Text="{Binding URLImage, UpdateSourceTrigger=PropertyChanged}" Margin="0,10"/>
+            <Button Content="Get Image From URL" Margin="0,10" Command="{Binding GetOnlineImageCommand}" Width="Auto"/>
+            <Button Content="Open Image from storage" Margin="0,10" Command="{Binding LoadImageCommand}"/>
+            <Button Content="Save to File" RenderTransformOrigin="-0.402,0.606" Margin="0,10" Command="{Binding SaveImageCommand}"/>
+            <Button Content="Save To IS" Margin="0,10" Command="{Binding SaveImageISCommand}"/>
+            <Button Content="Load From IS" Margin="0,10" Command="{Binding LoadImageISCommand}"/>
+            <Button Content="Load Backup From IS" Margin="0,10" Command="{Binding LoadBackupImageISCommand}"/>
+            <Label Content="Running Threads:"/>
+            <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,10,60" ItemsSource="{Binding CurrentThreads}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Key}" />
+                            <TextBlock Text=" : " />
+                            <TextBlock Text="{Binding Value}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Window>
